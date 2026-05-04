@@ -18,18 +18,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   </section>
 
   <div class="canvas">
-    <section class="container intro">
-      <h1 class="tagline">
-        {t.home.tagline.map((word, i) => (
-          <span class="tagline-line">
-            {i === t.home.tagline.length - 1 && (
-              <img src={handsMark.src} alt="" class="tagline-mark" aria-hidden="true" />
-            )}
-            {word}
-          </span>
-        ))}
-      </h1>
-      <p class="intro-body">{t.home.lede}</p>
+    <section class="intro-section">
+      <div class="intro">
+        <h1 class="tagline">
+          {t.home.tagline.map((word, i) => (
+            <span class:list={["tagline-line", i === t.home.tagline.length - 1 && "has-mark"]}>
+              {i === t.home.tagline.length - 1 && (
+                <img src={handsMark.src} alt="" class="tagline-mark" aria-hidden="true" />
+              )}
+              <span class="tagline-word">{word}</span>
+            </span>
+          ))}
+        </h1>
+        <p class="intro-body">{t.home.lede}</p>
+      </div>
     </section>
 
     <section class="container featured">
@@ -69,16 +71,25 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     padding-bottom: var(--space-8);
   }
 
+  .intro-section {
+    padding-inline: var(--gutter);
+    padding-block: var(--space-8);
+  }
   .intro {
     display: grid;
-    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
-    gap: var(--space-7);
+    grid-template-columns: minmax(0, 280px) minmax(0, 720px);
+    column-gap: var(--space-7);
     align-items: stretch;
-    padding-block: var(--space-8);
+    width: fit-content;
+    margin-inline: auto;
   }
   .intro-body {
     border-left: 1px solid var(--color-rule);
     padding-left: var(--space-7);
+    font-family: var(--font-serif);
+    font-size: var(--fs-h2);
+    line-height: 1.3;
+    padding-top: 0.4em;
   }
   .tagline {
     display: flex;
@@ -86,22 +97,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     font-family: var(--font-sans);
     font-weight: 700;
     font-size: clamp(2rem, 4vw, 3.0625rem);
-    line-height: var(--lh-tight);
+    line-height: 1.15;
     letter-spacing: var(--letter-tight);
     margin: 0;
   }
   .tagline-line {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
+    position: relative;
+    display: block;
   }
-  .tagline-mark { width: 0.9em; height: 0.9em; }
-  .intro-body {
-    font-family: var(--font-serif);
-    font-size: var(--fs-h2);
-    line-height: 1.3;
-    max-width: 30ch;
-    padding-top: 0.5em;
+  .tagline-mark {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.85em;
+    height: 0.85em;
+    margin-right: 0.25em;
   }
 
   .featured {
@@ -146,16 +157,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   }
 
   @media (max-width: 768px) {
+    .intro-section { padding-block: var(--space-6); }
     .intro {
       grid-template-columns: 1fr;
-      gap: var(--space-4);
+      row-gap: var(--space-4);
+      max-width: none;
     }
     .intro-body {
       border-left: 0;
       padding-left: 0;
       border-top: 1px solid var(--color-rule);
-      padding-top: var(--space-3);
+      padding-top: var(--space-4);
+      padding-left: 1.2em;
     }
+    .tagline { padding-left: 1.2em; }
     .featured {
       grid-template-columns: 1fr;
       gap: var(--space-5);
