@@ -1,0 +1,147 @@
+@import "./tokens.css";
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, h4, h5, p, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img, picture, svg, video { display: block; max-width: 100%; height: auto; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+input, textarea { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+html, body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main { flex: 1; }
+
+/* Typography */
+.display {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-tight);
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  letter-spacing: var(--letter-wide);
+  text-transform: uppercase;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: var(--max-content);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+.section-tight {
+  padding-block: var(--space-6);
+}
+
+.rule { border-top: var(--rule); }
+
+/* Page header (the hand-drawn mark + page title pattern) */
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.0625rem);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--letter-tight);
+}
+
+.page-title img {
+  width: 0.9em;
+  height: 0.9em;
+  flex-shrink: 0;
+}
+
+/* Two-column intro pattern (page title + paragraph) */
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: var(--space-7);
+  align-items: start;
+  padding-block: var(--space-7);
+}
+
+.intro-body {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  max-width: 56ch;
+}
+
+.intro-body p + p { margin-top: 1em; }
+
+@media (max-width: 768px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+/* Forms */
+input[type="email"],
+input[type="text"],
+textarea {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule);
+  padding: var(--space-3) 0;
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  outline: 0;
+  color: var(--color-ink);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-ink-muted);
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+input:focus, textarea:focus {
+  border-bottom-color: var(--color-ink);
+}
+
+/* Utility */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

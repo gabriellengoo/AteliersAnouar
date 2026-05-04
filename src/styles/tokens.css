@@ -1,0 +1,51 @@
+:root {
+  --color-ink: #1f1f1f;
+  --color-ink-soft: #4a4a4a;
+  --color-ink-muted: #888;
+  --color-cream: #faf9f6;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-coral: #f97479;
+  --color-rule: #cccccc;
+  --color-rule-soft: #d9d9d9;
+
+  --font-sans: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
+  --font-serif: "Goudy Bookletter 1911", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+
+  --fs-display: clamp(2.5rem, 5vw, 3.5rem);
+  --fs-h1: clamp(2rem, 4vw, 3.0625rem);
+  --fs-h2: clamp(1.5rem, 2.5vw, 1.9375rem);
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  --lh-tight: 1.05;
+  --lh-snug: 1.22;
+  --lh-body: 1.36;
+  --lh-relaxed: 1.5;
+
+  --letter-tight: -0.01em;
+  --letter-wide: 0.04em;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --max-content: 1280px;
+  --gutter: 5rem;
+
+  --rule: 1px solid var(--color-rule);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter: 1.25rem;
+  }
+}

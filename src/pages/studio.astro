@@ -1,0 +1,113 @@
+---
+import Base from "../layouts/Base.astro";
+import { strings } from "../i18n/strings";
+import handsMark from "../../public/images/hands-mark.png";
+import lantern from "../../public/images/studio-lantern.jpg";
+import seat from "../../public/images/studio-seat.jpg";
+
+const t = strings.en;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const images: Record<string, ImageMetadata> = {
+  "studio-lantern": lantern,
+  "studio-seat": seat,
+};
+---
+
+<Base current="studio" title="Studio — Ateliers Anouar">
+  <section class="container intro">
+    <h1 class="page-title">
+      <img src={handsMark.src} alt="" />
+      {t.studio.title}
+    </h1>
+    <p class="intro-body">{t.studio.intro}</p>
+  </section>
+
+  <section class="container pieces">
+    {t.studio.pieces.map((piece) => (
+      <article class="piece">
+        <div class="piece-image">
+          {images[piece.image] && <img src={images[piece.image].src} alt={piece.name} />}
+        </div>
+        <div class="piece-meta">
+          <h2 class="piece-name">{piece.name}</h2>
+          <p class="piece-body">{piece.body}</p>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="container next-section">
+    <a href={`${base}/collaboration`} class="next-link">{t.studio.next}</a>
+  </section>
+</Base>
+
+<style>
+  .pieces {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-9);
+    padding-block: var(--space-7);
+  }
+  .piece {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: var(--space-7);
+    align-items: end;
+  }
+  .piece:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+  .piece:nth-child(even) .piece-meta {
+    order: -1;
+  }
+  .piece-image {
+    background: var(--color-white);
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .piece-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .piece-meta {
+    border-top: 1px solid var(--color-rule);
+    padding-top: var(--space-3);
+  }
+  .piece-name {
+    font-size: var(--fs-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-wide);
+    margin-bottom: var(--space-2);
+  }
+  .piece-body {
+    font-family: var(--font-serif);
+    font-size: var(--fs-body);
+    line-height: var(--lh-relaxed);
+    max-width: 38ch;
+  }
+
+  .next-section {
+    display: flex;
+    justify-content: flex-end;
+    padding-block: var(--space-6);
+  }
+  .next-link {
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 1.9375rem);
+    letter-spacing: var(--letter-tight);
+  }
+  .next-link:hover { opacity: 0.6; }
+
+  @media (max-width: 768px) {
+    .piece, .piece:nth-child(even) {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+    .piece:nth-child(even) .piece-meta { order: 0; }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import Base from "../../layouts/Base.astro";
+import { strings } from "../../i18n/strings";
+import handsMark from "../../../public/images/hands-mark.png";
+
+const t = strings.en;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<Base current="index" title="Index — Ateliers Anouar">
+  <section class="container intro-row">
+    <h1 class="page-title">
+      <img src={handsMark.src} alt="" />
+      {t.index.title}
+    </h1>
+  </section>
+
+  <section class="container index-list">
+    <ul>
+      {t.index.items.map((item) => (
+        <li>
+          <a href={`${base}/projects/${item.slug}`} class="index-row">
+            <span class="col col-name serif">{item.name}</span>
+            <span class="col col-place serif">{item.place}</span>
+            <span class="col col-date serif">{item.date}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .intro-row {
+    padding-block: var(--space-7) var(--space-5);
+  }
+  .index-list ul {
+    border-top: 1px solid var(--color-rule);
+  }
+  .index-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-5);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-rule);
+    transition: background 0.12s;
+  }
+  .index-row:hover {
+    background: var(--color-white);
+  }
+  .col {
+    font-size: var(--fs-body);
+  }
+
+  @media (max-width: 768px) {
+    .index-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+    .col-place, .col-date {
+      font-size: var(--fs-small);
+      color: var(--color-ink-soft);
+    }
+  }
+</style>

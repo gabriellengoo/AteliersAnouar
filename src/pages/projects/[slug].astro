@@ -1,0 +1,138 @@
+---
+import Base from "../../layouts/Base.astro";
+import { strings } from "../../i18n/strings";
+import handsMark from "../../../public/images/hands-mark.png";
+import projectHero from "../../../public/images/studio-lantern.jpg";
+
+const t = strings.en;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+export function getStaticPaths() {
+  return strings.en.index.items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const heading = item?.name ?? "Honouring Heritage";
+---
+
+<Base current="index" title={`${heading} — Ateliers Anouar`}>
+  <section class="container project-head">
+    <h1 class="project-title">
+      <img src={handsMark.src} alt="" />
+      {heading}
+    </h1>
+    <a href={`${base}/projects`} class="back-link">{t.project.back}</a>
+  </section>
+
+  <section class="container project-hero">
+    <figure>
+      <img src={projectHero.src} alt={heading} />
+      <figcaption class="serif caption">{t.project.caption}</figcaption>
+    </figure>
+  </section>
+
+  <section class="container project-text">
+    <div class="text-block">
+      <p class="eyebrow">{t.project.placeholderHeading}</p>
+      <p class="serif body">{t.project.placeholderBody}</p>
+    </div>
+    <div class="text-block">
+      <p class="eyebrow">{t.project.placeholderHeading}</p>
+      <p class="serif body">{t.project.placeholderBody}</p>
+    </div>
+  </section>
+
+  <section class="container project-grid two-col">
+    <figure><div class="placeholder"></div><figcaption class="caption">Image title<br /><span class="serif">{t.project.caption}</span></figcaption></figure>
+    <figure><div class="placeholder"></div><figcaption class="caption">Image title<br /><span class="serif">{t.project.caption}</span></figcaption></figure>
+  </section>
+
+  <section class="container project-grid three-col">
+    <figure><div class="placeholder tall"></div></figure>
+    <figure><div class="placeholder tall"></div></figure>
+    <figure><div class="placeholder tall"></div></figure>
+  </section>
+</Base>
+
+<style>
+  .project-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-5);
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .project-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 1.9375rem);
+    letter-spacing: var(--letter-tight);
+  }
+  .project-title img { width: 1em; height: 1em; }
+  .back-link {
+    font-family: var(--font-serif);
+    font-size: var(--fs-small);
+    color: var(--color-ink-soft);
+  }
+  .back-link:hover { color: var(--color-ink); }
+
+  .project-hero {
+    padding-block: var(--space-5);
+  }
+  .project-hero img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .caption {
+    font-family: var(--font-serif);
+    font-size: var(--fs-small);
+    color: var(--color-ink-soft);
+    margin-top: var(--space-2);
+  }
+
+  .project-text {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+    padding-block: var(--space-6);
+    background: var(--color-white);
+    padding-inline: var(--gutter);
+    margin-inline: 0;
+    max-width: none;
+  }
+  .text-block .eyebrow { margin-bottom: var(--space-2); }
+  .text-block .body {
+    font-family: var(--font-serif);
+    font-size: var(--fs-body);
+    line-height: var(--lh-relaxed);
+    max-width: 50ch;
+  }
+
+  .project-grid {
+    display: grid;
+    gap: var(--space-5);
+    padding-block: var(--space-5);
+  }
+  .project-grid.two-col { grid-template-columns: 1fr 1fr; }
+  .project-grid.three-col { grid-template-columns: repeat(3, 1fr); }
+
+  .placeholder {
+    background: var(--color-rule-soft);
+    aspect-ratio: 4 / 3;
+  }
+  .placeholder.tall { aspect-ratio: 3 / 4; }
+
+  @media (max-width: 768px) {
+    .project-text, .project-grid.two-col, .project-grid.three-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

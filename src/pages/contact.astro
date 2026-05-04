@@ -1,0 +1,92 @@
+---
+import Base from "../layouts/Base.astro";
+import { strings } from "../i18n/strings";
+import handsMark from "../../public/images/hands-mark.png";
+
+const t = strings.en;
+---
+
+<Base current="contact" title="Contact — Ateliers Anouar">
+  <section class="container contact">
+    <h1 class="contact-title">
+      <img src={handsMark.src} alt="" />
+      {t.contact.title}
+    </h1>
+
+    <form class="contact-form" method="post" action="#">
+      <div class="field">
+        <label for="email" class="field-label">{t.contact.labels.email}</label>
+        <input id="email" type="email" name="email" placeholder={t.contact.placeholders.email} required />
+      </div>
+      <div class="field">
+        <label for="subject" class="field-label">{t.contact.labels.subject}</label>
+        <input id="subject" type="text" name="subject" placeholder={t.contact.placeholders.subject} required />
+      </div>
+      <div class="field">
+        <label for="message" class="field-label">{t.contact.labels.message}</label>
+        <textarea id="message" name="message" placeholder={t.contact.placeholders.message} rows="5" required></textarea>
+      </div>
+      <button type="submit" class="contact-submit">{t.contact.labels.send}</button>
+    </form>
+  </section>
+</Base>
+
+<style>
+  .contact {
+    padding-block: var(--space-8);
+    max-width: 880px;
+  }
+  .contact-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--letter-tight);
+    margin-bottom: var(--space-9);
+    text-align: center;
+  }
+  .contact-title img { width: 0.9em; height: 0.9em; }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .field {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    border-top: 1px solid var(--color-rule);
+    padding-top: var(--space-3);
+  }
+  .field:has(textarea) { align-items: flex-start; }
+  .field-label {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--fs-body);
+    flex-shrink: 0;
+  }
+  .field input,
+  .field textarea {
+    border: 0;
+    padding: 0;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 4em;
+  }
+  .contact-submit {
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+    padding: var(--space-4);
+    font-weight: 700;
+    font-size: 1.25rem;
+    width: 100%;
+    transition: background 0.15s;
+  }
+  .contact-submit:hover { background: var(--color-white); }
+</style>

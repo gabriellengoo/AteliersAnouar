@@ -1,0 +1,72 @@
+[
+  {
+    "family": "Helvetica Neue",
+    "weight": 700,
+    "size": 16.0,
+    "lineHeight": 19.535999298095703,
+    "uses": 101
+  },
+  {
+    "family": "Goudy Bookletter 1911",
+    "weight": 400,
+    "size": 16.0,
+    "lineHeight": 21.765625,
+    "uses": 48
+  },
+  {
+    "family": "Helvetica Neue",
+    "weight": 700,
+    "size": 49.0,
+    "lineHeight": 59.82899856567383,
+    "uses": 14
+  },
+  {
+    "family": "Helvetica Neue",
+    "weight": 700,
+    "size": 20.0,
+    "lineHeight": 24.419998168945312,
+    "uses": 14
+  },
+  {
+    "family": "Helvetica Neue",
+    "weight": 700,
+    "size": 31.0,
+    "lineHeight": 37.85099792480469,
+    "uses": 9
+  },
+  {
+    "family": "Goudy Bookletter 1911",
+    "weight": 400,
+    "size": 20.0,
+    "lineHeight": 27.20703125,
+    "uses": 9
+  },
+  {
+    "family": "Helvetica Neue",
+    "weight": 400,
+    "size": 16.0,
+    "lineHeight": 19.08799934387207,
+    "uses": 8
+  },
+  {
+    "family": "Goudy Bookletter 1911",
+    "weight": 400,
+    "size": 14.0,
+    "lineHeight": 19.044921875,
+    "uses": 8
+  },
+  {
+    "family": "Helvetica Neue",
+    "weight": 700,
+    "size": 14.0,
+    "lineHeight": 17.0939998626709,
+    "uses": 8
+  },
+  {
+    "family": "Goudy Bookletter 1911",
+    "weight": 400,
+    "size": 31.0,
+    "lineHeight": 42.1708984375,
+    "uses": 2
+  }
+]

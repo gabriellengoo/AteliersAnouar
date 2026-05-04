@@ -1,0 +1,81 @@
+---
+import Base from "../layouts/Base.astro";
+import { strings } from "../i18n/strings";
+import handsMark from "../../public/images/hands-mark.png";
+import valuesIllo from "../../public/images/values-illustration.png";
+
+const t = strings.en;
+---
+
+<Base current="about" title="About — Ateliers Anouar">
+  <section class="container intro">
+    <h1 class="page-title">
+      <img src={handsMark.src} alt="" />
+      {t.about.title}
+    </h1>
+    <p class="intro-body">{t.about.intro}</p>
+  </section>
+
+  <section class="band">
+    <div class="container values">
+      <p class="eyebrow">{t.about.values.eyebrow}</p>
+      <div class="values-cols">
+        {t.about.values.cols.map((p) => <p class="serif body">{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="container us">
+    <figure class="us-illustration">
+      <img src={valuesIllo.src} alt="" />
+    </figure>
+    <div class="us-block">
+      <p class="eyebrow">{t.about.us.eyebrow}</p>
+      <div class="us-cols">
+        {t.about.us.cols.map((p) => <p class="serif body">{p}</p>)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .band {
+    background: var(--color-white);
+    padding-block: var(--space-7);
+  }
+  .values .eyebrow,
+  .us-block .eyebrow {
+    margin-bottom: var(--space-4);
+  }
+  .values-cols,
+  .us-cols {
+    column-count: 2;
+    column-gap: var(--space-7);
+    font-family: var(--font-serif);
+    font-size: var(--fs-body);
+    line-height: var(--lh-relaxed);
+  }
+  .values-cols p, .us-cols p { break-inside: avoid; margin: 0; }
+  .values-cols p + p, .us-cols p + p { margin-top: 1em; }
+
+  .us {
+    padding-block: var(--space-9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .us-illustration {
+    margin: 0 0 var(--space-5);
+  }
+  .us-illustration img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+  }
+  .us-block { width: 100%; }
+
+  @media (max-width: 768px) {
+    .values-cols, .us-cols { column-count: 1; }
+  }
+</style>

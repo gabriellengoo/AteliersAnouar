@@ -1,0 +1,135 @@
+---
+import { strings } from "../i18n/strings";
+import handsMark from "../../public/images/hands-mark.png";
+
+interface Props {
+  current?: "collaboration" | "studio" | "index" | "contact" | "about" | "home";
+  lang?: "en" | "fr";
+}
+const { current, lang = "en" } = Astro.props;
+const t = strings.en;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (path: string) => `${base}${path}`;
+---
+
+<header class="site-header">
+  <div class="container header-grid">
+    <nav class="nav nav-left" aria-label="Primary">
+      <a href={link("/collaboration")} class:list={["nav-link", current === "collaboration" && "is-current"]}>
+        {t.nav.collaboration}
+        {current === "collaboration" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
+      </a>
+      <a href={link("/studio")} class:list={["nav-link", current === "studio" && "is-current"]}>
+        {t.nav.studio}
+        {current === "studio" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
+      </a>
+      <a href={link("/projects")} class:list={["nav-link", current === "index" && "is-current"]}>
+        {t.nav.index}
+        {current === "index" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
+      </a>
+    </nav>
+
+    <a href={link("/")} class="brand" aria-label="Ateliers Anouar — home">
+      <span class="brand-text">{t.siteName}</span>
+    </a>
+
+    <nav class="nav nav-right" aria-label="Secondary">
+      <a href={link("/contact")} class:list={["nav-link", current === "contact" && "is-current"]}>
+        {t.nav.contact}
+        {current === "contact" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
+      </a>
+      <a href={link("/about")} class:list={["nav-link", current === "about" && "is-current"]}>
+        {t.nav.about}
+        {current === "about" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
+      </a>
+      <span class="lang-switch">
+        <a href={link("/")} class={lang === "en" ? "is-active" : ""}>EN</a>
+        <span class="lang-sep">/</span>
+        <a href={link("/fr")} class={lang === "fr" ? "is-active" : ""}>FR</a>
+      </span>
+    </nav>
+
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-rule);
+    background: var(--color-cream);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: 64px;
+    gap: var(--space-4);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    font-weight: 700;
+    font-size: var(--fs-small);
+    letter-spacing: var(--letter-wide);
+  }
+  .nav-right { justify-content: flex-end; }
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-ink);
+    transition: opacity 0.15s;
+  }
+  .nav-link:hover { opacity: 0.6; }
+  .nav-mark { width: 1.1em; height: 1.1em; transform: translateY(1px); }
+  .brand {
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: var(--letter-tight);
+    white-space: nowrap;
+  }
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 700;
+    font-size: var(--fs-small);
+    letter-spacing: var(--letter-wide);
+  }
+  .lang-switch a { color: var(--color-ink-muted); transition: color 0.15s; }
+  .lang-switch a.is-active { color: var(--color-ink); }
+  .lang-sep { color: var(--color-ink); }
+  .menu-toggle {
+    display: none;
+    width: 24px; height: 18px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-ink);
+  }
+  @media (max-width: 900px) {
+    .nav-left, .nav-right { display: none; }
+    .header-grid { grid-template-columns: 1fr auto 1fr; }
+    .menu-toggle { display: flex; justify-self: end; }
+    .brand { font-size: 1rem; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+  toggle?.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    document.body.classList.toggle("menu-open", !open);
+  });
+</script>

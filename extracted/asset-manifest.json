@@ -1,0 +1,295 @@
+{
+  "da6d79c16070de925d72d5482ccbda0d405e89f6": {
+    "file": "da6d79c1-Black_v.png",
+    "size_bytes": 10989,
+    "locations": [
+      {
+        "page": "01-homepage",
+        "node": "Black v.1 1",
+        "id": "192:1579"
+      },
+      {
+        "page": "02-homepage-promo",
+        "node": "Black v.1 1",
+        "id": "246:4220"
+      }
+    ]
+  },
+  "f9436351cba7222c9c757f145509be1bc4ed869b": {
+    "file": "f9436351-Hands_B_2.png",
+    "size_bytes": 102749,
+    "locations": [
+      {
+        "page": "01-homepage",
+        "node": "Hands B 2",
+        "id": "198:1683"
+      },
+      {
+        "page": "02-homepage-promo",
+        "node": "Hands B 2",
+        "id": "246:4229"
+      },
+      {
+        "page": "03-collaboration",
+        "node": "Hands B 2",
+        "id": "227:2972"
+      },
+      {
+        "page": "04-index",
+        "node": "Hands B 2",
+        "id": "252:4427"
+      },
+      {
+        "page": "05-studio",
+        "node": "Hands B 2",
+        "id": "238:3158"
+      },
+      {
+        "page": "06-about",
+        "node": "Hands B 2",
+        "id": "239:4035"
+      },
+      {
+        "page": "07-individual-page",
+        "node": "Hands B 2",
+        "id": "253:5125"
+      },
+      {
+        "page": "08-contact",
+        "node": "Hands B 2",
+        "id": "240:4075"
+      }
+    ]
+  },
+  "3eed1a17d9d88da393da67362e7d677218f82fe8": {
+    "file": "3eed1a17-Layer_6_1.png",
+    "size_bytes": 5336372,
+    "locations": [
+      {
+        "page": "01-homepage",
+        "node": "Layer 6 1",
+        "id": "I192:1585;192:1490"
+      },
+      {
+        "page": "02-homepage-promo",
+        "node": "Layer 6 1",
+        "id": "I246:4233;192:1490"
+      }
+    ]
+  },
+  "47a0fe14fc0329f624536ff5699697fc186de7a6": {
+    "file": "47a0fe14-6B5A9485_copie_3.jpg",
+    "size_bytes": 4029303,
+    "locations": [
+      {
+        "page": "01-homepage",
+        "node": "6B5A9485 copie 3",
+        "id": "I192:1586;192:1467"
+      },
+      {
+        "page": "02-homepage-promo",
+        "node": "6B5A9485 copie 3",
+        "id": "I246:4234;192:1467"
+      },
+      {
+        "page": "04-index",
+        "node": "6B5A9485 copie 3",
+        "id": "I253:4945;253:4743"
+      },
+      {
+        "page": "05-studio",
+        "node": "6B5A9485 copie 3",
+        "id": "260:6783"
+      }
+    ]
+  },
+  "5bf0f5666cc17bb32930c52aba14d1fafdb765da": {
+    "file": "5bf0f566-White_v.png",
+    "size_bytes": 10814,
+    "locations": [
+      {
+        "page": "01-homepage",
+        "node": "White v.1 1",
+        "id": "I209:2268;209:2247"
+      },
+      {
+        "page": "02-homepage-promo",
+        "node": "White v.1 1",
+        "id": "I246:4239;209:2247"
+      },
+      {
+        "page": "03-collaboration",
+        "node": "White v.1 1",
+        "id": "I227:3008;209:2247"
+      },
+      {
+        "page": "04-index",
+        "node": "White v.1 1",
+        "id": "I252:4464;209:2247"
+      },
+      {
+        "page": "05-studio",
+        "node": "White v.1 1",
+        "id": "I238:3204;209:2247"
+      },
+      {
+        "page": "06-about",
+        "node": "White v.1 1",
+        "id": "I239:3893;209:2247"
+      },
+      {
+        "page": "07-individual-page",
+        "node": "White v.1 1",
+        "id": "I253:5145;209:2247"
+      },
+      {
+        "page": "08-contact",
+        "node": "White v.1 1",
+        "id": "I240:4098;209:2247"
+      }
+    ]
+  },
+  "1dd8ed1a54bee63f24297b1f98115ee599040e1f": {
+    "file": "1dd8ed1a-IMG_9938_2.jpg",
+    "size_bytes": 9744523,
+    "locations": [
+      {
+        "page": "02-homepage-promo",
+        "node": "IMG_9938 2",
+        "id": "246:4170"
+      }
+    ]
+  },
+  "14e5092d04eddc3248c3bf7ac29e69b5dcc0adc2": {
+    "file": "14e5092d-01_Embroidery_1.png",
+    "size_bytes": 50442,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "01 Embroidery 1",
+        "id": "298:8481"
+      }
+    ]
+  },
+  "1ebe075e68761af80a2938e59f0e46af465b3aa2": {
+    "file": "1ebe075e-04_Woodworking_1.png",
+    "size_bytes": 50319,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "04 Woodworking 1",
+        "id": "298:8486"
+      }
+    ]
+  },
+  "b742a15c4c13c6176f3a25a36366070d51575f35": {
+    "file": "b742a15c-05_Leather_goods_1.png",
+    "size_bytes": 69007,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "05 Leather goods 1",
+        "id": "298:8491"
+      }
+    ]
+  },
+  "7fdd7a3478e2d514b13920d4bafbd2673ba26c4d": {
+    "file": "7fdd7a34-03_Weaving_1.png",
+    "size_bytes": 54186,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "03 Weaving 1",
+        "id": "298:8497"
+      }
+    ]
+  },
+  "22b0e58b643af7b03846ee823d0fae3c2ddd01bf": {
+    "file": "22b0e58b-02_Ceramic_1.png",
+    "size_bytes": 54015,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "02 Ceramic 1",
+        "id": "298:8502"
+      }
+    ]
+  },
+  "3229385d846ed2076b2eebd45325b71304f01764": {
+    "file": "3229385d-08_Zellige_1.png",
+    "size_bytes": 22212,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "08 Zellige 1",
+        "id": "298:8507"
+      }
+    ]
+  },
+  "eb810567c7b028eb5077948b4bb418c206917559": {
+    "file": "eb810567-09_Calligraphy_1.png",
+    "size_bytes": 56035,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "09 Calligraphy 1",
+        "id": "298:8512"
+      }
+    ]
+  },
+  "b4eb8c27771d3344a4cb65d5da07919eb624a75f": {
+    "file": "b4eb8c27-10_Felting_1.png",
+    "size_bytes": 61856,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "10 Felting 1",
+        "id": "298:8518"
+      }
+    ]
+  },
+  "f213eebc158b682e1cade61004f8ec8a0c99b87f": {
+    "file": "f213eebc-07_Metalwork_1.png",
+    "size_bytes": 47168,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "07 Metalwork 1",
+        "id": "298:8523"
+      }
+    ]
+  },
+  "9c70fa87da1b95d52f1a9e4657ebde1b6a4b26b9": {
+    "file": "9c70fa87-06_Basketry_1.png",
+    "size_bytes": 50100,
+    "locations": [
+      {
+        "page": "03-collaboration",
+        "node": "06 Basketry 1",
+        "id": "298:8528"
+      }
+    ]
+  },
+  "ddf7971063fafe9797980a80237653822dde2832": {
+    "file": "ddf79710-6B5A9485_copie_3.jpg",
+    "size_bytes": 4319243,
+    "locations": [
+      {
+        "page": "05-studio",
+        "node": "6B5A9485 copie 3",
+        "id": "252:4274"
+      }
+    ]
+  },
+  "e421f8ea6ce09995e275938cb6eeb2d032593597": {
+    "file": "e421f8ea-2hand_holding_B_2.png",
+    "size_bytes": 48333,
+    "locations": [
+      {
+        "page": "06-about",
+        "node": "2hand_holding B 2",
+        "id": "240:4040"
+      }
+    ]
+  }
+}
