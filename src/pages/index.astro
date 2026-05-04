@@ -17,41 +17,42 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     </div>
   </section>
 
-  <section class="container intro">
-    <h1 class="tagline">
-      {t.home.tagline.map((word, i) => (
-        <span class="tagline-line">
-          {i === t.home.tagline.length - 1 && (
-            <img src={handsMark.src} alt="" class="tagline-mark" aria-hidden="true" />
-          )}
-          {word}
-        </span>
-      ))}
-    </h1>
-    <p class="intro-body">{t.home.lede}</p>
-  </section>
+  <div class="canvas">
+    <section class="container intro">
+      <h1 class="tagline">
+        {t.home.tagline.map((word, i) => (
+          <span class="tagline-line">
+            {i === t.home.tagline.length - 1 && (
+              <img src={handsMark.src} alt="" class="tagline-mark" aria-hidden="true" />
+            )}
+            {word}
+          </span>
+        ))}
+      </h1>
+      <p class="intro-body">{t.home.lede}</p>
+    </section>
 
-  <section class="container featured">
-    <a href={`${base}/collaboration`} class="feature-card">
-      <div class="feature-image feature-image-illo">
-        <img src={collabPiece.src} alt="" />
-      </div>
-      <span class="feature-cta">{t.home.collabCta}</span>
-    </a>
-    <a href={`${base}/studio`} class="feature-card">
-      <div class="feature-image">
-        <img src={studioPiece.src} alt="" />
-      </div>
-      <span class="feature-cta">{t.home.studioCta}</span>
-    </a>
-  </section>
+    <section class="container featured">
+      <a href={`${base}/collaboration`} class="feature-card">
+        <div class="feature-image feature-image-illo">
+          <img src={collabPiece.src} alt="" />
+        </div>
+        <span class="feature-cta">{t.home.collabCta}</span>
+      </a>
+      <a href={`${base}/studio`} class="feature-card">
+        <div class="feature-image">
+          <img src={studioPiece.src} alt="" />
+        </div>
+        <span class="feature-cta">{t.home.studioCta}</span>
+      </a>
+    </section>
+  </div>
 </Base>
 
 <style>
   .hero {
     background: var(--color-cream);
     padding-block: var(--space-9);
-    border-bottom: 1px solid var(--color-rule);
   }
   .hero-inner {
     display: flex;
@@ -62,12 +63,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     height: auto;
   }
 
+  .canvas {
+    background: var(--color-white);
+    flex: 1;
+    padding-bottom: var(--space-8);
+  }
+
   .intro {
     display: grid;
-    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
-    gap: var(--space-6);
-    align-items: start;
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    gap: var(--space-7);
+    align-items: stretch;
     padding-block: var(--space-8);
+  }
+  .intro-body {
+    border-left: 1px solid var(--color-rule);
+    padding-left: var(--space-7);
   }
   .tagline {
     display: flex;
@@ -138,6 +149,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     .intro {
       grid-template-columns: 1fr;
       gap: var(--space-4);
+    }
+    .intro-body {
+      border-left: 0;
+      padding-left: 0;
+      border-top: 1px solid var(--color-rule);
+      padding-top: var(--space-3);
     }
     .featured {
       grid-template-columns: 1fr;
