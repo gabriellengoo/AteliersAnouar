@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Visit http://localhost:4321/ateliers-anouar/
+Visit http://localhost:4321/AteliersAnouar/
 
 ## Build
 

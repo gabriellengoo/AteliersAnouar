@@ -54,14 +54,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 <style>
   .hero {
     background: var(--color-cream);
-    padding-block: var(--space-9);
+    padding-block: 4.5rem;
   }
   .hero-inner {
     display: flex;
     justify-content: center;
   }
   .hero-logo {
-    width: clamp(180px, 22vw, 280px);
+    width: clamp(130px, 14vw, 190px);
     height: auto;
   }
 
@@ -73,22 +73,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   .intro-section {
     padding-inline: var(--gutter);
-    padding-block: var(--space-8);
+    padding-block: 3.25rem 2.75rem;
   }
   .intro {
     display: grid;
-    grid-template-columns: minmax(0, 280px) minmax(0, 720px);
-    column-gap: var(--space-7);
+    grid-template-columns: minmax(0, 210px) minmax(0, 430px);
+    column-gap: 2.25rem;
     align-items: stretch;
     width: fit-content;
     margin-inline: auto;
   }
   .intro-body {
     border-left: 1px solid var(--color-rule);
-    padding-left: var(--space-7);
+    padding-left: 2.25rem;
     font-family: var(--font-serif);
-    font-size: var(--fs-h2);
-    line-height: 1.3;
+    font-size: clamp(1rem, 1.45vw, 1.25rem);
+    line-height: 1.4;
     padding-top: 0.4em;
   }
   .tagline {
@@ -96,8 +96,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     flex-direction: column;
     font-family: var(--font-sans);
     font-weight: 700;
-    font-size: clamp(2rem, 4vw, 3.0625rem);
-    line-height: 1.15;
+    font-size: clamp(1.7rem, 2.4vw, 2.25rem);
+    line-height: 1.08;
     letter-spacing: var(--letter-tight);
     margin: 0;
   }
@@ -117,9 +117,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   .featured {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-6);
-    padding-block: var(--space-7);
+    grid-template-columns: repeat(2, minmax(0, 300px));
+    justify-content: center;
+    gap: 1.5rem;
+    padding-block: 2rem var(--space-7);
   }
   .feature-card {
     display: flex;
@@ -127,7 +128,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     gap: var(--space-4);
   }
   .feature-image {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 4;
     background: var(--color-white);
     overflow: hidden;
     display: flex;
@@ -140,8 +141,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     object-fit: cover;
   }
   .feature-image-illo img {
-    width: 60%;
-    height: 60%;
+    width: 76%;
+    height: 76%;
     object-fit: contain;
   }
   .feature-cta {
@@ -157,23 +158,67 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   }
 
   @media (max-width: 768px) {
-    .intro-section { padding-block: var(--space-6); }
+    .hero {
+      padding-block: 2rem;
+      background: var(--color-cream);
+    }
+    .hero-logo { width: 86px; }
+    .intro-section {
+      padding-inline: var(--gutter);
+      padding-block: 1.25rem 1.5rem;
+      background: var(--color-white);
+    }
     .intro {
       grid-template-columns: 1fr;
-      row-gap: var(--space-4);
+      row-gap: 0.65rem;
       max-width: none;
+      width: 100%;
     }
     .intro-body {
       border-left: 0;
       padding-left: 0;
       border-top: 1px solid var(--color-rule);
-      padding-top: var(--space-4);
-      padding-left: 1.2em;
+      padding-top: 0.65rem;
+      font-size: 0.68rem;
+      max-width: none;
+      width: 100%;
     }
-    .tagline { padding-left: 1.2em; }
+    .tagline {
+      padding-left: 1.1em;
+      font-size: 1.35rem;
+      width: 100%;
+    }
     .featured {
       grid-template-columns: 1fr;
-      gap: var(--space-5);
+      gap: 1rem;
+      padding: 0 0 1.25rem;
+      background: var(--color-white);
     }
+    .feature-card {
+      gap: 0.4rem;
+    }
+    .feature-image {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+    }
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-image-illo {
+      aspect-ratio: 2 / 3;
+    }
+    .feature-image-illo img {
+      width: 82%;
+      height: 82%;
+      object-fit: contain;
+    }
+    .feature-cta {
+      margin-inline: var(--gutter);
+      padding-top: 0.35rem;
+      font-size: 0.55rem;
+    }
+    .canvas { padding-bottom: 0; }
   }
 </style>

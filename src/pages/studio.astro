@@ -45,24 +45,19 @@ const images: Record<string, ImageMetadata> = {
   .pieces {
     display: flex;
     flex-direction: column;
-    gap: var(--space-9);
+    gap: 4rem;
     padding-block: var(--space-7);
+    max-width: 900px;
   }
   .piece {
     display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
     gap: var(--space-7);
     align-items: end;
   }
-  .piece:nth-child(even) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  }
-  .piece:nth-child(even) .piece-meta {
-    order: -1;
-  }
   .piece-image {
     background: var(--color-white);
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 2 / 3;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -86,7 +81,7 @@ const images: Record<string, ImageMetadata> = {
   }
   .piece-body {
     font-family: var(--font-serif);
-    font-size: var(--fs-body);
+    font-size: 0.9rem;
     line-height: var(--lh-relaxed);
     max-width: 38ch;
   }
@@ -104,10 +99,45 @@ const images: Record<string, ImageMetadata> = {
   .next-link:hover { opacity: 0.6; }
 
   @media (max-width: 768px) {
+    .intro {
+      padding-block: 1rem 0.8rem;
+      gap: 0.7rem;
+      background: var(--color-white);
+    }
+    .page-title { font-size: 1.45rem; }
+    .intro-body {
+      font-size: 0.6rem;
+      max-width: 42ch;
+    }
+    .pieces {
+      gap: 1.25rem;
+      padding: 0 0 1rem;
+      max-width: none;
+      background: var(--color-white);
+    }
     .piece, .piece:nth-child(even) {
       grid-template-columns: 1fr;
-      gap: var(--space-4);
+      gap: 0.4rem;
     }
     .piece:nth-child(even) .piece-meta { order: 0; }
+    .piece-image {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+    }
+    .piece-image img { object-fit: cover; }
+    .piece-meta {
+      margin-inline: var(--gutter);
+      padding-top: 0.35rem;
+    }
+    .piece-name {
+      font-size: 0.62rem;
+      margin-bottom: 0.2rem;
+    }
+    .piece-body { font-size: 0.58rem; }
+    .next-section {
+      padding-block: 0.75rem;
+      background: var(--color-white);
+    }
+    .next-link { font-size: 1rem; }
   }
 </style>

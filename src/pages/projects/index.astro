@@ -2,9 +2,13 @@
 import Base from "../../layouts/Base.astro";
 import { strings } from "../../i18n/strings";
 import handsMark from "../../../public/images/hands-mark.png";
+import lantern from "../../../public/images/studio-lantern.jpg";
+import seat from "../../../public/images/studio-seat.jpg";
+import promo from "../../../public/images/studio-promo.jpg";
 
 const t = strings.en;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const previews = [promo, lantern, seat, promo, lantern, seat];
 ---
 
 <Base current="index" title="Index — Ateliers Anouar">
@@ -15,25 +19,41 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     </h1>
   </section>
 
-  <section class="container index-list">
-    <ul>
-      {t.index.items.map((item) => (
+  <section class="container index-layout">
+    <div class="index-list">
+      <ul>
+      {t.index.items.map((item, index) => (
         <li>
-          <a href={`${base}/projects/${item.slug}`} class="index-row">
+          <a
+            href={`${base}/projects/${item.slug}`}
+            class="index-row"
+            data-preview={previews[index % previews.length].src}
+            data-preview-alt={item.name}
+          >
             <span class="col col-name serif">{item.name}</span>
             <span class="col col-place serif">{item.place}</span>
             <span class="col col-date serif">{item.date}</span>
           </a>
+          <figure class="row-preview" aria-hidden="true">
+            <img src={previews[index % previews.length].src} alt="" />
+          </figure>
         </li>
       ))}
-    </ul>
+      </ul>
+    </div>
   </section>
 </Base>
 
 <style>
   .intro-row {
-    padding-block: var(--space-7) var(--space-5);
+    padding-block: 2.75rem 1.5rem;
   }
+  .index-layout {
+    position: relative;
+    min-height: 480px;
+  }
+  .index-list { width: 72%; }
+  .index-list li { position: static; }
   .index-list ul {
     border-top: 1px solid var(--color-rule);
   }
@@ -41,25 +61,50 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-5);
-    padding-block: var(--space-3);
+    padding: 0.55rem 0.65rem;
     border-bottom: 1px solid var(--color-rule);
-    transition: background 0.12s;
   }
   .index-row:hover {
-    background: var(--color-white);
+    background: var(--color-black);
+    color: var(--color-white);
   }
   .col {
-    font-size: var(--fs-body);
+    font-size: 0.86rem;
+  }
+  .row-preview {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24%;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .index-list li:hover .row-preview,
+  .index-list li:focus-within .row-preview {
+    opacity: 1;
+  }
+  .row-preview img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
   }
 
   @media (max-width: 768px) {
+    .index-layout {
+      min-height: 0;
+      padding-bottom: 1.5rem;
+    }
+    .index-list { width: 100%; }
+    .row-preview { display: none; }
     .index-row {
-      grid-template-columns: 1fr;
-      gap: var(--space-1);
+      grid-template-columns: 2fr 0.7fr 1fr;
+      gap: 0.35rem;
+      padding: 0.32rem 0.15rem;
     }
-    .col-place, .col-date {
-      font-size: var(--fs-small);
-      color: var(--color-ink-soft);
-    }
+    .col,
+    .col-place,
+    .col-date { font-size: 0.52rem; }
+    .intro-row { padding-block: 1rem 0.65rem; }
+    .page-title { font-size: 1.65rem; }
   }
 </style>

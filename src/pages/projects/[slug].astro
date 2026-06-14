@@ -24,13 +24,18 @@ const heading = item?.name ?? "Honouring Heritage";
       <img src={handsMark.src} alt="" />
       {heading}
     </h1>
+    <p class="project-meta serif">{item?.place} | {item?.date}</p>
     <a href={`${base}/projects`} class="back-link">{t.project.back}</a>
   </section>
 
   <section class="container project-hero">
     <figure>
       <img src={projectHero.src} alt={heading} />
-      <figcaption class="serif caption">{t.project.caption}</figcaption>
+      <div class="mobile-project-placeholder" aria-hidden="true"></div>
+      <figcaption class="caption">
+        <strong>Image title</strong><br />
+        <span class="serif">{t.project.caption}</span>
+      </figcaption>
     </figure>
   </section>
 
@@ -62,7 +67,7 @@ const heading = item?.name ?? "Honouring Heritage";
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: var(--space-5);
+    padding-block: 1.25rem;
     gap: var(--space-4);
     flex-wrap: wrap;
   }
@@ -81,10 +86,13 @@ const heading = item?.name ?? "Honouring Heritage";
     font-size: var(--fs-small);
     color: var(--color-ink-soft);
   }
+  .project-meta { display: none; }
+  .mobile-project-placeholder { display: none; }
   .back-link:hover { color: var(--color-ink); }
 
   .project-hero {
-    padding-block: var(--space-5);
+    max-width: 900px;
+    padding-block: 1.5rem;
   }
   .project-hero img {
     width: 100%;
@@ -102,7 +110,7 @@ const heading = item?.name ?? "Honouring Heritage";
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-7);
-    padding-block: var(--space-6);
+    padding-block: 2rem;
     background: var(--color-white);
     padding-inline: var(--gutter);
     margin-inline: 0;
@@ -119,7 +127,8 @@ const heading = item?.name ?? "Honouring Heritage";
   .project-grid {
     display: grid;
     gap: var(--space-5);
-    padding-block: var(--space-5);
+    max-width: 900px;
+    padding-block: 1.5rem;
   }
   .project-grid.two-col { grid-template-columns: 1fr 1fr; }
   .project-grid.three-col { grid-template-columns: repeat(3, 1fr); }
@@ -131,8 +140,64 @@ const heading = item?.name ?? "Honouring Heritage";
   .placeholder.tall { aspect-ratio: 3 / 4; }
 
   @media (max-width: 768px) {
+    .project-head {
+      display: block;
+      padding-block: 0.8rem;
+      background: var(--color-white);
+    }
+    .project-title {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+      width: 100%;
+      font-size: 1.45rem;
+      max-width: 9ch;
+      margin-bottom: 0.7rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--color-rule);
+    }
+    .project-title img {
+      width: 1.25em;
+      height: 1.25em;
+    }
+    .project-meta {
+      display: block;
+      font-size: 0.55rem;
+    }
+    .back-link { display: none; }
+    .project-hero {
+      padding-block: 0.75rem;
+      background: var(--color-white);
+    }
+    .project-hero img { display: none; }
+    .mobile-project-placeholder {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--color-rule-soft);
+    }
+    .caption { font-size: 0.5rem; }
+    .caption strong {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+    }
     .project-text, .project-grid.two-col, .project-grid.three-col {
       grid-template-columns: 1fr;
     }
+    .project-text {
+      gap: 1rem;
+      padding: 1.25rem var(--gutter);
+      background: var(--color-white);
+    }
+    .text-block .eyebrow { font-size: 0.55rem; }
+    .text-block .body { font-size: 0.55rem; }
+    .project-grid {
+      gap: 0.75rem;
+      padding-block: 0.75rem;
+      background: var(--color-white);
+    }
+    .placeholder,
+    .placeholder.tall { aspect-ratio: 4 / 3; }
   }
 </style>

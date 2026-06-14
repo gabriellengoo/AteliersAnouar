@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://ghalid126.github.io',
-  base: '/ateliers-anouar',
+  site: 'https://gabriellengoo.github.io',
+  base: '/AteliersAnouar',
   trailingSlash: 'ignore',
   i18n: {
     defaultLocale: 'en',

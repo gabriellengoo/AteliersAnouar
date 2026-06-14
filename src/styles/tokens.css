@@ -46,6 +46,7 @@
 
 @media (max-width: 768px) {
   :root {
-    --gutter: 1.25rem;
+    --gutter: 0.65rem;
+    --fs-body: 0.75rem;
   }
 }

@@ -1,6 +1,6 @@
 ---
 import { strings } from "../i18n/strings";
-import handsMark from "../../public/images/hands-mark.png";
+import colabMark from "../../public/images/colab.png";
 
 interface Props {
   current?: "collaboration" | "studio" | "index" | "contact" | "about" | "home";
@@ -10,23 +10,26 @@ const { current, lang = "en" } = Astro.props;
 const t = strings.en;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (path: string) => `${base}${path}`;
+const navItems = [
+  { key: "collaboration", label: t.nav.collaboration, href: "/collaboration", mark: colabMark.src },
+  { key: "studio", label: t.nav.studio, href: "/studio", mark: colabMark.src },
+  { key: "index", label: t.nav.index, href: "/projects", mark: colabMark.src },
+] as const;
+const secondaryItems = [
+  { key: "contact", label: t.nav.contact, href: "/contact", mark: colabMark.src },
+  { key: "about", label: t.nav.about, href: "/about", mark: colabMark.src },
+] as const;
 ---
 
 <header class="site-header">
   <div class="container header-grid">
     <nav class="nav nav-left" aria-label="Primary">
-      <a href={link("/collaboration")} class:list={["nav-link", current === "collaboration" && "is-current"]}>
-        {t.nav.collaboration}
-        {current === "collaboration" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
-      </a>
-      <a href={link("/studio")} class:list={["nav-link", current === "studio" && "is-current"]}>
-        {t.nav.studio}
-        {current === "studio" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
-      </a>
-      <a href={link("/projects")} class:list={["nav-link", current === "index" && "is-current"]}>
-        {t.nav.index}
-        {current === "index" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
-      </a>
+      {navItems.map((item) => (
+        <a href={link(item.href)} class:list={["nav-link", current === item.key && "is-current"]}>
+          {item.label}
+          <img src={item.mark} alt="" class="nav-mark" aria-hidden="true" />
+        </a>
+      ))}
     </nav>
 
     <a href={link("/")} class="brand" aria-label="Ateliers Anouar — home">
@@ -34,14 +37,12 @@ const link = (path: string) => `${base}${path}`;
     </a>
 
     <nav class="nav nav-right" aria-label="Secondary">
-      <a href={link("/contact")} class:list={["nav-link", current === "contact" && "is-current"]}>
-        {t.nav.contact}
-        {current === "contact" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
-      </a>
-      <a href={link("/about")} class:list={["nav-link", current === "about" && "is-current"]}>
-        {t.nav.about}
-        {current === "about" && <img src={handsMark.src} alt="" class="nav-mark" aria-hidden="true" />}
-      </a>
+      {secondaryItems.map((item) => (
+        <a href={link(item.href)} class:list={["nav-link", current === item.key && "is-current"]}>
+          {item.label}
+          <img src={item.mark} alt="" class="nav-mark" aria-hidden="true" />
+        </a>
+      ))}
       <span class="lang-switch">
         <a href={link("/")} class={lang === "en" ? "is-active" : ""}>EN</a>
         <span class="lang-sep">/</span>
@@ -49,15 +50,37 @@ const link = (path: string) => `${base}${path}`;
       </span>
     </nav>
 
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
+<aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a href={link("/")} class="mobile-brand">{t.siteName}</a>
+    <button class="menu-close" aria-label="Close menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    {[...navItems, ...secondaryItems].map((item) => (
+      <a href={link(item.href)} class:list={["mobile-link", current === item.key && "is-current"]}>
+        <span>{item.label}</span><span aria-hidden="true">—</span>
+      </a>
+    ))}
+    <div class="mobile-langs">
+      <a href={link("/")} class={lang === "en" ? "is-active" : ""}>EN</a>
+      <span>/</span>
+      <a href={link("/fr")} class={lang === "fr" ? "is-active" : ""}>FR</a>
+    </div>
+  </nav>
+</aside>
+<button class="menu-scrim" aria-label="Close menu" tabindex="-1"></button>
+
 <style>
   .site-header {
-    border-bottom: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-black);
     background: var(--color-cream);
     position: sticky;
     top: 0;
@@ -67,15 +90,15 @@ const link = (path: string) => `${base}${path}`;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    min-height: 64px;
+    min-height: 42px;
     gap: var(--space-4);
   }
   .nav {
     display: flex;
     align-items: center;
-    gap: var(--space-6);
+    gap: 1.35rem;
     font-weight: 700;
-    font-size: var(--fs-small);
+    font-size: 0.68rem;
     letter-spacing: var(--letter-wide);
   }
   .nav-right { justify-content: flex-end; }
@@ -86,11 +109,20 @@ const link = (path: string) => `${base}${path}`;
     color: var(--color-ink);
     transition: opacity 0.15s;
   }
-  .nav-link:hover { opacity: 0.6; }
-  .nav-mark { width: 1.1em; height: 1.1em; transform: translateY(1px); }
+  .nav-link:hover { opacity: 1; }
+  .nav-mark {
+    width: 1.1em;
+    height: 1.1em;
+    object-fit: contain;
+    transform: translateY(1px);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .nav-link:hover .nav-mark,
+  .nav-link.is-current .nav-mark { opacity: 1; }
   .brand {
     font-weight: 700;
-    font-size: 1.125rem;
+    font-size: 1rem;
     letter-spacing: var(--letter-tight);
     white-space: nowrap;
   }
@@ -99,7 +131,7 @@ const link = (path: string) => `${base}${path}`;
     align-items: center;
     gap: 0.25rem;
     font-weight: 700;
-    font-size: var(--fs-small);
+    font-size: 0.68rem;
     letter-spacing: var(--letter-wide);
   }
   .lang-switch a { color: var(--color-ink-muted); transition: color 0.15s; }
@@ -117,19 +149,126 @@ const link = (path: string) => `${base}${path}`;
     height: 2px;
     background: var(--color-ink);
   }
+  .mobile-menu,
+  .menu-scrim { display: none; }
+
   @media (max-width: 900px) {
     .nav-left, .nav-right { display: none; }
-    .header-grid { grid-template-columns: 1fr auto 1fr; }
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      width: 100%;
+      z-index: 80;
+    }
+    .header-grid {
+      grid-template-columns: 1fr auto;
+      min-height: 32px;
+      padding-inline: 6px;
+    }
     .menu-toggle { display: flex; justify-self: end; }
-    .brand { font-size: 1rem; }
+    .brand {
+      font-size: 0.72rem;
+      justify-self: start;
+    }
+    .menu-toggle {
+      width: 16px;
+      height: 12px;
+    }
+    .menu-toggle span { height: 1px; }
+    .mobile-menu {
+      display: block;
+      position: fixed;
+      inset: 0 0 0 auto;
+      z-index: 100;
+      width: min(100%, 420px);
+      padding: 0 7px;
+      background: var(--color-cream);
+      transform: translateX(100%);
+      transition: transform 0.28s ease;
+    }
+    .mobile-menu-head {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mobile-brand {
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .menu-close {
+      position: relative;
+      width: 18px;
+      height: 18px;
+    }
+    .menu-close span {
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 18px;
+      height: 1px;
+      background: var(--color-ink);
+    }
+    .menu-close span:first-child { transform: rotate(45deg); }
+    .menu-close span:last-child { transform: rotate(-45deg); }
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      padding-top: 0.75rem;
+    }
+    .mobile-link {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.52rem 0;
+      border-bottom: 1px solid var(--color-rule);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: var(--letter-wide);
+    }
+    .mobile-langs {
+      display: flex;
+      gap: 0.3rem;
+      padding-top: 0.65rem;
+      font-size: 0.62rem;
+      color: var(--color-ink-muted);
+    }
+    .menu-scrim {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    :global(body.menu-open) {
+      overflow: hidden;
+    }
+    :global(body.menu-open) .mobile-menu {
+      transform: translateX(0);
+    }
+    :global(body.menu-open) .menu-scrim {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 </style>
 
 <script>
   const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
-  toggle?.addEventListener("click", () => {
-    const open = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!open));
-    document.body.classList.toggle("menu-open", !open);
+  const menu = document.querySelector<HTMLElement>(".mobile-menu");
+  const close = document.querySelector<HTMLButtonElement>(".menu-close");
+  const scrim = document.querySelector<HTMLButtonElement>(".menu-scrim");
+  const setMenu = (open: boolean) => {
+    toggle?.setAttribute("aria-expanded", String(open));
+    menu?.setAttribute("aria-hidden", String(!open));
+    document.body.classList.toggle("menu-open", open);
+  };
+  toggle?.addEventListener("click", () => setMenu(true));
+  close?.addEventListener("click", () => setMenu(false));
+  scrim?.addEventListener("click", () => setMenu(false));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenu(false);
   });
 </script>

@@ -39,9 +39,19 @@ const t = strings.en;
 </Base>
 
 <style>
+  .intro {
+    max-width: 900px;
+    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+    padding-block: 2.5rem;
+  }
+  .page-title { font-size: 2rem; }
+  .intro-body { font-size: 0.88rem; }
   .band {
     background: var(--color-white);
-    padding-block: var(--space-7);
+    padding-block: 2.5rem;
+  }
+  .values {
+    max-width: 760px;
   }
   .values .eyebrow,
   .us-block .eyebrow {
@@ -52,14 +62,15 @@ const t = strings.en;
     column-count: 2;
     column-gap: var(--space-7);
     font-family: var(--font-serif);
-    font-size: var(--fs-body);
+    font-size: 0.82rem;
     line-height: var(--lh-relaxed);
   }
   .values-cols p, .us-cols p { break-inside: avoid; margin: 0; }
   .values-cols p + p, .us-cols p + p { margin-top: 1em; }
 
   .us {
-    padding-block: var(--space-9);
+    max-width: 760px;
+    padding-block: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,6 +87,41 @@ const t = strings.en;
   .us-block { width: 100%; }
 
   @media (max-width: 768px) {
+    .intro {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      padding-block: 1rem 1.35rem;
+      background: var(--color-white);
+    }
+    .page-title { font-size: 1.45rem; }
+    .intro-body { font-size: 0.62rem; max-width: 38ch; }
+    .band {
+      padding-block: 1.4rem;
+      background: var(--color-cream);
+    }
+    .values .eyebrow,
+    .us-block .eyebrow {
+      margin-bottom: 0.45rem;
+      font-size: 0.58rem;
+    }
     .values-cols, .us-cols { column-count: 1; }
+    .values-cols,
+    .us-cols {
+      font-size: 0.62rem;
+      line-height: 1.35;
+    }
+    .us {
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding-block: 1.5rem;
+      background: var(--color-white);
+    }
+    .us-illustration {
+      margin: 0 auto 0.5rem;
+    }
+    .us-illustration img {
+      width: 105px;
+      height: 105px;
+    }
   }
 </style>
