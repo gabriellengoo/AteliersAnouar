@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
 
+const isVercel = process.env.VERCEL === '1';
+
 export default defineConfig({
-  site: 'https://gabriellengoo.github.io',
-  base: '/AteliersAnouar',
+  site: isVercel ? undefined : 'https://gabriellengoo.github.io',
+  base: isVercel ? '/' : '/AteliersAnouar',
   trailingSlash: 'ignore',
   i18n: {
     defaultLocale: 'en',
