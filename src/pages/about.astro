@@ -43,15 +43,15 @@ const t = strings[lang];
   :global(main) { background: var(--color-white); }
   .intro {
     max-width: 1200px;
-    grid-template-columns: minmax(0, 340px) minmax(0, 720px);
-    gap: 2.5rem;
+    grid-template-columns: max-content minmax(0, 720px);
+    gap: 1rem;
     padding-block: 5rem;
     background: var(--color-white);
   }
   .page-title {
     font-size: 3.2rem;
     border-right: 1px solid var(--color-ink);
-    padding-right: 2.5rem;
+    padding-right: 1rem;
   }
   .intro-body {
     font-size: 1.05rem;

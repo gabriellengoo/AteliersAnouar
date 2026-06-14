@@ -45,14 +45,14 @@ const images: Record<string, ImageMetadata> = {
 
 <style>
   .intro {
-    grid-template-columns: minmax(0, 320px) minmax(0, 620px);
-    gap: 2rem;
+    grid-template-columns: max-content minmax(0, 620px);
+    gap: 1rem;
     max-width: 1040px;
     padding-block: 4rem 3rem;
   }
   .page-title {
     border-right: 1px solid var(--color-ink);
-    padding-right: 2rem;
+    padding-right: 1rem;
   }
   .intro-body {
     max-width: 56ch;

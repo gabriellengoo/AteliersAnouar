@@ -69,11 +69,11 @@ const heading = localizedItem?.name ?? t.index.items[0].name;
   :global(main) { background: var(--color-white); }
   .project-head {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: max-content auto;
     align-items: center;
     max-width: 1080px;
     padding-block: 4rem 3rem;
-    gap: 2.5rem;
+    gap: 1rem;
   }
   .project-title {
     display: flex;
@@ -86,7 +86,7 @@ const heading = localizedItem?.name ?? t.index.items[0].name;
   }
   .project-title {
     border-right: 1px solid var(--color-ink);
-    padding-right: 2.5rem;
+    padding-right: 1rem;
   }
   .project-title img { width: 1em; height: 1em; }
   .back-link {
