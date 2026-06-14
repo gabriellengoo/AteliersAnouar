@@ -1,13 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
-import { strings } from "../i18n/strings";
+import { getLang, strings } from "../i18n/strings";
 import handsMark from "../../public/images/hands-mark.png";
 import valuesIllo from "../../public/images/values-illustration.png";
 
-const t = strings.en;
+const lang = getLang(Astro.url.pathname);
+const t = strings[lang];
 ---
 
-<Base current="about" title="About — Ateliers Anouar">
+<Base current="about" title={`${t.about.title} — Ateliers Anouar`} lang={lang}>
   <section class="container intro">
     <h1 class="page-title">
       <img src={handsMark.src} alt="" />
@@ -39,31 +40,51 @@ const t = strings.en;
 </Base>
 
 <style>
+  :global(main) { background: var(--color-white); }
   .intro {
-    max-width: 900px;
-    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
-    padding-block: 2.5rem;
-  }
-  .page-title { font-size: 2rem; }
-  .intro-body { font-size: 0.88rem; }
-  .band {
+    max-width: 1200px;
+    grid-template-columns: minmax(0, 340px) minmax(0, 720px);
+    gap: 2.5rem;
+    padding-block: 5rem;
     background: var(--color-white);
-    padding-block: 2.5rem;
+  }
+  .page-title {
+    font-size: 3.2rem;
+    border-right: 1px solid var(--color-ink);
+    padding-right: 2.5rem;
+  }
+  .intro-body {
+    font-size: 1.05rem;
+    max-width: 68ch;
+  }
+  .band {
+    background: var(--color-cream);
+    padding-block: 5rem;
   }
   .values {
-    max-width: 760px;
+    max-width: 940px;
   }
   .values .eyebrow,
   .us-block .eyebrow {
     margin-bottom: var(--space-4);
   }
+  .values .eyebrow {
+    font-size: 1.2rem;
+  }
+  .values-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
   .values-cols,
+  .us-cols {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: var(--lh-relaxed);
+  }
   .us-cols {
     column-count: 2;
     column-gap: var(--space-7);
-    font-family: var(--font-serif);
-    font-size: 0.82rem;
-    line-height: var(--lh-relaxed);
   }
   .values-cols p, .us-cols p { break-inside: avoid; margin: 0; }
   .values-cols p + p, .us-cols p + p { margin-top: 1em; }
@@ -94,6 +115,10 @@ const t = strings.en;
       background: var(--color-white);
     }
     .page-title { font-size: 1.45rem; }
+    .page-title {
+      border-right: 0;
+      padding-right: 0;
+    }
     .intro-body { font-size: 0.62rem; max-width: 38ch; }
     .band {
       padding-block: 1.4rem;
@@ -104,7 +129,11 @@ const t = strings.en;
       margin-bottom: 0.45rem;
       font-size: 0.58rem;
     }
-    .values-cols, .us-cols { column-count: 1; }
+    .values-cols {
+      grid-template-columns: 1fr;
+      gap: 0.7rem;
+    }
+    .us-cols { column-count: 1; }
     .values-cols,
     .us-cols {
       font-size: 0.62rem;

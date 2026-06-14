@@ -1,17 +1,19 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { strings } from "../../i18n/strings";
+import { getLang, strings } from "../../i18n/strings";
 import handsMark from "../../../public/images/hands-mark.png";
 import lantern from "../../../public/images/studio-lantern.jpg";
 import seat from "../../../public/images/studio-seat.jpg";
 import promo from "../../../public/images/studio-promo.jpg";
 
-const t = strings.en;
+const lang = getLang(Astro.url.pathname);
+const t = strings[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const localePrefix = lang === "fr" ? "/fr" : "";
 const previews = [promo, lantern, seat, promo, lantern, seat];
 ---
 
-<Base current="index" title="Index — Ateliers Anouar">
+<Base current="index" title="Index — Ateliers Anouar" lang={lang}>
   <section class="container intro-row">
     <h1 class="page-title">
       <img src={handsMark.src} alt="" />
@@ -25,7 +27,7 @@ const previews = [promo, lantern, seat, promo, lantern, seat];
       {t.index.items.map((item, index) => (
         <li>
           <a
-            href={`${base}/projects/${item.slug}`}
+            href={`${base}${localePrefix}/projects/${item.slug}`}
             class="index-row"
             data-preview={previews[index % previews.length].src}
             data-preview-alt={item.name}
@@ -51,8 +53,10 @@ const previews = [promo, lantern, seat, promo, lantern, seat];
   .index-layout {
     position: relative;
     min-height: 480px;
+    max-width: 1120px;
+    padding-inline: 0;
   }
-  .index-list { width: 72%; }
+  .index-list { width: 70%; }
   .index-list li { position: static; }
   .index-list ul {
     border-top: 1px solid var(--color-rule);
@@ -74,8 +78,9 @@ const previews = [promo, lantern, seat, promo, lantern, seat];
   .row-preview {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 24%;
+    left: calc(70% + 1rem);
+    right: auto;
+    width: 27%;
     opacity: 0;
     pointer-events: none;
   }
@@ -93,6 +98,7 @@ const previews = [promo, lantern, seat, promo, lantern, seat];
     .index-layout {
       min-height: 0;
       padding-bottom: 1.5rem;
+      padding-inline: var(--gutter);
     }
     .index-list { width: 100%; }
     .row-preview { display: none; }

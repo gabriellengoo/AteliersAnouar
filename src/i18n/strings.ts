@@ -84,7 +84,8 @@ export const strings = {
       values: {
         eyebrow: "Values",
         cols: [
-          "Generating economic and creative opportunities, we intend to push artisans' creativity to a wider range of projects and aesthetics, with respect to their craft. Aware that this dynamic raises both social and environmental implications, Anouar is committed to fair value sharing and eco-design, working only with a clientele that shares our values: uniqueness and creativity, respect for craftsmanship, and exceptional quality.",
+          "Generating economic and creative opportunities, we intend to push artisans' creativity to a wider range of projects and aesthetics, with respect to their craft. Aware that this dynamic raises both social and environmental implications,",
+          "Anouar is committed to fair value sharing and eco-design, working only with a clientele that shares our values: uniqueness and creativity, respect for craftsmanship, and exceptional quality.",
         ],
       },
       us: {
@@ -108,8 +109,110 @@ export const strings = {
       links: ["INSTAGRAM", "TERMS & CONDITIONS", "PRIVACY POLICY"],
     },
   },
+  fr: {
+    nav: {
+      collaboration: "COLLABORATION",
+      studio: "STUDIO",
+      index: "INDEX",
+      contact: "CONTACT",
+      about: "À PROPOS",
+    },
+    siteName: "Ateliers Anouar",
+    home: {
+      tagline: ["Artisanat.", "Culture.", "Connexion."],
+      lede: "Nous créons des ponts entre les artisans marocains et le design international.",
+      collabCta: "COLLABORATION →",
+      studioCta: "STUDIO →",
+    },
+    collaboration: {
+      title: "Collaboration",
+      intro: [
+        "Le service de collaboration d’Anouar met en relation des artisans marocains hautement qualifiés avec des clients internationaux dans les domaines de la mode et du design d’objet. Chaque projet naît d’une rencontre unique entre une vision contemporaine et un patrimoine artisanal vivant.",
+        "À partir de votre idée ou de votre design, nous construisons une approche sur mesure, de la recherche des techniques et des artisans au suivi de production et à la livraison finale. Grâce à notre réseau, nous identifions les solutions les plus adaptées aux exigences précises de votre brief.",
+      ],
+      services: [
+        { title: "Un savoir-faire d’exception", body: "Votre projet est confié à des maîtres artisans sélectionnés pour leur expertise, leur attention au détail et leur capacité à donner vie aux concepts créatifs les plus exigeants." },
+        { title: "Une création sur mesure", body: "Nous concevons des pièces qui reflètent votre vision : objets uniques, éditions limitées ou productions exclusives, développés en étroite collaboration avec vous." },
+        { title: "Un suivi rigoureux", body: "Présente sur place, notre équipe supervise chaque étape afin de garantir la qualité, la fidélité à votre vision et une communication fluide. Nous accordons une importance particulière à la confidentialité et à la protection de votre propriété intellectuelle." },
+        { title: "Un engagement responsable", body: "Nous défendons une approche éthique fondée sur une rémunération juste des artisans, des collaborations durables et la préservation des savoir-faire traditionnels marocains." },
+      ],
+      crafts: [
+        { name: "Broderie", icon: "craft-embroidery" },
+        { name: "Travail du bois", icon: "craft-woodworking" },
+        { name: "Maroquinerie", icon: "craft-leather" },
+        { name: "Tissage", icon: "craft-weaving" },
+        { name: "Céramique", icon: "craft-ceramic" },
+        { name: "Zellige", icon: "craft-zellige" },
+        { name: "Calligraphie", icon: "craft-calligraphy" },
+        { name: "Feutrage", icon: "craft-felting" },
+        { name: "Métallerie", icon: "craft-metalwork" },
+        { name: "Vannerie", icon: "craft-basketry" },
+      ],
+      next: "Studio →",
+    },
+    studio: {
+      title: "Studio",
+      intro: "En dialogue avec les ateliers, le studio imagine des objets et des pièces de mode sur mesure, guidés par l’esthétique Anouar.",
+      pieces: [
+        { slug: "lantern", name: "Lanterne", image: "studio-lantern", body: "Inspirée des paysages de la région de Taroudant. Réalisée à partir d’une bouteille de gaz recyclée." },
+        { slug: "seat", name: "Assise", image: "studio-seat", body: "Évoquant le relief et la profondeur du Haut Atlas. Réalisée en chêne massif et métal." },
+      ],
+      next: "Collaboration →",
+    },
+    index: {
+      title: "Index",
+      items: [
+        { slug: "honouring-heritage-1", name: "Honorer le patrimoine", place: "Paris", date: "Juin 2026" },
+        { slug: "honouring-heritage-2", name: "Honorer le patrimoine", place: "Paris", date: "Juin 2026" },
+        { slug: "honouring-heritage-3", name: "Honorer le patrimoine", place: "Paris", date: "Juin 2026" },
+        { slug: "honouring-heritage-4", name: "Honorer le patrimoine", place: "Paris", date: "Juin 2026" },
+        { slug: "honouring-heritage-5", name: "Honorer le patrimoine", place: "Paris", date: "Juin 2026" },
+        { slug: "honouring-heritage-6", name: "Honorer le patrimoine", place: "Paris", date: "Juin 2026" },
+      ],
+    },
+    project: {
+      back: "← Retour à l’index",
+      placeholderHeading: "Titre",
+      placeholderBody: "Ce texte présente le projet, son contexte, les savoir-faire mobilisés et le dialogue établi entre création contemporaine et artisanat marocain.",
+      caption: "Légende",
+    },
+    about: {
+      title: "À propos",
+      intro: "Né en mai 2026 avec l’ambition de créer une valeur durable pour la prochaine génération de savoir-faire traditionnels marocains.",
+      values: {
+        eyebrow: "Valeurs",
+        cols: [
+          "En créant des opportunités économiques et créatives, nous souhaitons ouvrir la créativité des artisans à une plus grande diversité de projets et d’esthétiques, dans le respect de leur métier. Consciente des implications sociales et environnementales de cette dynamique,",
+          "Anouar s’engage pour un partage équitable de la valeur et l’éco-conception, auprès d’une clientèle qui partage nos valeurs : singularité et créativité, respect du savoir-faire et qualité d’exception.",
+        ],
+      },
+      us: {
+        eyebrow: "Nous",
+        cols: [
+          "Ateliers Anouar est né de notre rencontre : Sofia Hilali, designer franco-marocaine basée à Marrakech, et Romane Vivilleau, cheffe de projet mode basée à Paris.",
+          "Portées par des valeurs communes autour de la création et de la préservation des savoir-faire, nous avons naturellement réuni nos compétences pour construire un service et un studio capables de donner vie à la vision Anouar.",
+          "Grâce à l’expérience de Sofia dans le luxe et à son réseau d’artisans marocains, Anouar crée des ponts entre les techniques artisanales marocaines et les créateurs, studios et marques internationaux.",
+        ],
+      },
+    },
+    contact: {
+      title: "Contact",
+      labels: { email: "E-MAIL :", subject: "OBJET :", message: "MESSAGE :", send: "Envoyer" },
+      placeholders: { email: "Saisissez votre adresse e-mail", subject: "Saisissez l’objet de votre message", message: "Écrivez votre message" },
+    },
+    footer: {
+      newsletterTitle: "Inscrivez-vous à notre newsletter",
+      newsletterPlaceholder: "Votre e-mail",
+      newsletterCta: "S’inscrire",
+      links: ["INSTAGRAM", "CONDITIONS GÉNÉRALES", "POLITIQUE DE CONFIDENTIALITÉ"],
+    },
+  },
 } as const;
 
 export function t(lang: Lang) {
-  return strings[lang === "fr" ? "en" : "en"];
+  return strings[lang];
+}
+
+export function getLang(pathname: string): Lang {
+  return /\/fr(?:\/|$)/.test(pathname) ? "fr" : "en";
 }

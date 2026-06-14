@@ -1,19 +1,21 @@
 ---
 import Base from "../layouts/Base.astro";
-import { strings } from "../i18n/strings";
+import { getLang, strings } from "../i18n/strings";
 import handsMark from "../../public/images/hands-mark.png";
 import lantern from "../../public/images/studio-lantern.jpg";
 import seat from "../../public/images/studio-seat.jpg";
 
-const t = strings.en;
+const lang = getLang(Astro.url.pathname);
+const t = strings[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const localePrefix = lang === "fr" ? "/fr" : "";
 const images: Record<string, ImageMetadata> = {
   "studio-lantern": lantern,
   "studio-seat": seat,
 };
 ---
 
-<Base current="studio" title="Studio — Ateliers Anouar">
+<Base current="studio" title={`${t.studio.title} — Ateliers Anouar`} lang={lang}>
   <section class="container intro">
     <h1 class="page-title">
       <img src={handsMark.src} alt="" />
@@ -37,21 +39,35 @@ const images: Record<string, ImageMetadata> = {
   </section>
 
   <section class="container next-section">
-    <a href={`${base}/collaboration`} class="next-link">{t.studio.next}</a>
+    <a href={`${base}${localePrefix}/collaboration`} class="next-link">{t.studio.next}</a>
   </section>
 </Base>
 
 <style>
+  .intro {
+    grid-template-columns: minmax(0, 320px) minmax(0, 620px);
+    gap: 2rem;
+    max-width: 1040px;
+    padding-block: 4rem 3rem;
+  }
+  .page-title {
+    border-right: 1px solid var(--color-ink);
+    padding-right: 2rem;
+  }
+  .intro-body {
+    max-width: 56ch;
+    font-size: 1rem;
+  }
   .pieces {
     display: flex;
     flex-direction: column;
     gap: 4rem;
     padding-block: var(--space-7);
-    max-width: 900px;
+    max-width: 1080px;
   }
   .piece {
     display: grid;
-    grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
+    grid-template-columns: minmax(340px, 520px) minmax(0, 440px);
     gap: var(--space-7);
     align-items: end;
   }
@@ -83,7 +99,7 @@ const images: Record<string, ImageMetadata> = {
     font-family: var(--font-serif);
     font-size: 0.9rem;
     line-height: var(--lh-relaxed);
-    max-width: 38ch;
+    max-width: 52ch;
   }
 
   .next-section {
@@ -105,6 +121,10 @@ const images: Record<string, ImageMetadata> = {
       background: var(--color-white);
     }
     .page-title { font-size: 1.45rem; }
+    .page-title {
+      border-right: 0;
+      padding-right: 0;
+    }
     .intro-body {
       font-size: 0.6rem;
       max-width: 42ch;

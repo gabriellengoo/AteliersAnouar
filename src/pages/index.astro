@@ -1,16 +1,19 @@
 ---
 import Base from "../layouts/Base.astro";
-import { strings } from "../i18n/strings";
+import { getLang, strings } from "../i18n/strings";
 import logoBlack from "../../public/images/logo-black.png";
 import collabPiece from "../../public/images/hero-illustration.png";
 import studioPiece from "../../public/images/studio-seat.jpg";
 import handsMark from "../../public/images/hands-mark.png";
 
-const t = strings.en;
+const lang = getLang(Astro.url.pathname);
+const t = strings[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const localePrefix = lang === "fr" ? "/fr" : "";
+const link = (path: string) => `${base}${localePrefix}${path}`;
 ---
 
-<Base current="home">
+<Base current="home" lang={lang}>
   <section class="hero">
     <div class="container hero-inner">
       <img src={logoBlack.src} alt="" class="hero-logo" />
@@ -35,13 +38,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     </section>
 
     <section class="container featured">
-      <a href={`${base}/collaboration`} class="feature-card">
+      <a href={link("/collaboration")} class="feature-card">
         <div class="feature-image feature-image-illo">
           <img src={collabPiece.src} alt="" />
         </div>
         <span class="feature-cta">{t.home.collabCta}</span>
       </a>
-      <a href={`${base}/studio`} class="feature-card">
+      <a href={link("/studio")} class="feature-card">
         <div class="feature-image">
           <img src={studioPiece.src} alt="" />
         </div>
@@ -139,6 +142,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: opacity 0.2s ease;
   }
   .feature-image-illo img {
     width: 76%;
@@ -146,7 +150,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     object-fit: contain;
   }
   .feature-cta {
-    border-top: 1px solid var(--color-rule);
+    border-top: 1px solid var(--color-black);
     padding-top: var(--space-3);
     font-family: var(--font-serif);
     font-size: var(--fs-small);
@@ -155,6 +159,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   }
   .feature-card:hover .feature-cta {
     color: var(--color-ink-soft);
+  }
+  .feature-card:hover .feature-image img {
+    opacity: 0.58;
   }
 
   @media (max-width: 768px) {

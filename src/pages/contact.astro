@@ -1,12 +1,13 @@
 ---
 import Base from "../layouts/Base.astro";
-import { strings } from "../i18n/strings";
+import { getLang, strings } from "../i18n/strings";
 import handsMark from "../../public/images/hands-mark.png";
 
-const t = strings.en;
+const lang = getLang(Astro.url.pathname);
+const t = strings[lang];
 ---
 
-<Base current="contact" title="Contact — Ateliers Anouar">
+<Base current="contact" title={`${t.contact.title} — Ateliers Anouar`} lang={lang}>
   <section class="container contact">
     <h1 class="contact-title">
       <img src={handsMark.src} alt="" />
@@ -34,7 +35,7 @@ const t = strings.en;
 <style>
   .contact {
     padding-block: 3rem;
-    max-width: 520px;
+    max-width: 850px;
   }
   .contact-title {
     display: flex;
@@ -74,6 +75,11 @@ const t = strings.en;
   .field textarea {
     border: 0;
     padding: 0;
+    min-width: 0;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: #b8b8b8;
   }
   .field textarea {
     resize: vertical;

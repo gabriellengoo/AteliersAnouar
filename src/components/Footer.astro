@@ -1,9 +1,14 @@
 ---
 import { strings } from "../i18n/strings";
 import logoWhite from "../../public/images/logo-white.png";
-const t = strings.en;
+interface Props {
+  lang?: "en" | "fr";
+}
+const { lang = "en" } = Astro.props;
+const t = strings[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const link = (path: string) => `${base}${path}`;
+const localePrefix = lang === "fr" ? "/fr" : "";
+const link = (path: string) => `${base}${localePrefix}${path}`;
 ---
 
 <footer class="site-footer">
@@ -44,6 +49,13 @@ const link = (path: string) => `${base}${path}`;
     width: 48px;
     height: auto;
     filter: invert(0);
+  }
+  .footer-logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 1.75rem;
+    border-right: 1px solid var(--color-cream);
   }
   .footer-heading {
     font-weight: 700;
@@ -98,6 +110,10 @@ const link = (path: string) => `${base}${path}`;
       padding: 0;
     }
     .footer-logo img { width: 45px; }
+    .footer-logo {
+      width: fit-content;
+      padding-right: 1rem;
+    }
     .footer-heading {
       font-size: 0.58rem;
       margin-bottom: 0.35rem;

@@ -7,9 +7,14 @@ interface Props {
   lang?: "en" | "fr";
 }
 const { current, lang = "en" } = Astro.props;
-const t = strings.en;
+const t = strings[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const link = (path: string) => `${base}${path}`;
+const localePrefix = lang === "fr" ? "/fr" : "";
+const link = (path: string) => `${base}${localePrefix}${path}`;
+const relativePath = Astro.url.pathname.slice(base.length) || "/";
+const cleanPath = relativePath.replace(/^\/fr(?=\/|$)/, "") || "/";
+const enLink = `${base}${cleanPath}`;
+const frLink = `${base}/fr${cleanPath === "/" ? "/" : cleanPath}`;
 const navItems = [
   { key: "collaboration", label: t.nav.collaboration, href: "/collaboration", mark: colabMark.src },
   { key: "studio", label: t.nav.studio, href: "/studio", mark: colabMark.src },
@@ -44,9 +49,9 @@ const secondaryItems = [
         </a>
       ))}
       <span class="lang-switch">
-        <a href={link("/")} class={lang === "en" ? "is-active" : ""}>EN</a>
+        <a href={enLink} class={lang === "en" ? "is-active" : ""}>EN</a>
         <span class="lang-sep">/</span>
-        <a href={link("/fr")} class={lang === "fr" ? "is-active" : ""}>FR</a>
+        <a href={frLink} class={lang === "fr" ? "is-active" : ""}>FR</a>
       </span>
     </nav>
 
@@ -70,9 +75,9 @@ const secondaryItems = [
       </a>
     ))}
     <div class="mobile-langs">
-      <a href={link("/")} class={lang === "en" ? "is-active" : ""}>EN</a>
+      <a href={enLink} class={lang === "en" ? "is-active" : ""}>EN</a>
       <span>/</span>
-      <a href={link("/fr")} class={lang === "fr" ? "is-active" : ""}>FR</a>
+      <a href={frLink} class={lang === "fr" ? "is-active" : ""}>FR</a>
     </div>
   </nav>
 </aside>
@@ -122,7 +127,7 @@ const secondaryItems = [
   .nav-link.is-current .nav-mark { opacity: 1; }
   .brand {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: var(--letter-tight);
     white-space: nowrap;
   }

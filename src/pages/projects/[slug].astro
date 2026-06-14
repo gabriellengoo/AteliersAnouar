@@ -1,11 +1,13 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { strings } from "../../i18n/strings";
+import { getLang, strings } from "../../i18n/strings";
 import handsMark from "../../../public/images/hands-mark.png";
 import projectHero from "../../../public/images/studio-lantern.jpg";
 
-const t = strings.en;
+const lang = getLang(Astro.url.pathname);
+const t = strings[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const localePrefix = lang === "fr" ? "/fr" : "";
 
 export function getStaticPaths() {
   return strings.en.index.items.map((item) => ({
@@ -15,17 +17,18 @@ export function getStaticPaths() {
 }
 
 const { item } = Astro.props;
-const heading = item?.name ?? "Honouring Heritage";
+const localizedItem = t.index.items.find((entry) => entry.slug === item?.slug) ?? item;
+const heading = localizedItem?.name ?? t.index.items[0].name;
 ---
 
-<Base current="index" title={`${heading} — Ateliers Anouar`}>
+<Base current="index" title={`${heading} — Ateliers Anouar`} lang={lang}>
   <section class="container project-head">
     <h1 class="project-title">
       <img src={handsMark.src} alt="" />
       {heading}
     </h1>
-    <p class="project-meta serif">{item?.place} | {item?.date}</p>
-    <a href={`${base}/projects`} class="back-link">{t.project.back}</a>
+    <p class="project-meta serif">{localizedItem?.place} | {localizedItem?.date}</p>
+    <a href={`${base}${localePrefix}/projects`} class="back-link">{t.project.back}</a>
   </section>
 
   <section class="container project-hero">
@@ -63,13 +66,14 @@ const heading = item?.name ?? "Honouring Heritage";
 </Base>
 
 <style>
+  :global(main) { background: var(--color-white); }
   .project-head {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
-    padding-block: 1.25rem;
-    gap: var(--space-4);
-    flex-wrap: wrap;
+    max-width: 1080px;
+    padding-block: 4rem 3rem;
+    gap: 2.5rem;
   }
   .project-title {
     display: flex;
@@ -77,26 +81,36 @@ const heading = item?.name ?? "Honouring Heritage";
     gap: var(--space-3);
     font-family: var(--font-sans);
     font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 1.9375rem);
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
     letter-spacing: var(--letter-tight);
+  }
+  .project-title {
+    border-right: 1px solid var(--color-ink);
+    padding-right: 2.5rem;
   }
   .project-title img { width: 1em; height: 1em; }
   .back-link {
+    display: none;
     font-family: var(--font-serif);
     font-size: var(--fs-small);
     color: var(--color-ink-soft);
   }
-  .project-meta { display: none; }
+  .project-meta {
+    display: block;
+    font-size: 1rem;
+    white-space: nowrap;
+  }
   .mobile-project-placeholder { display: none; }
   .back-link:hover { color: var(--color-ink); }
 
   .project-hero {
-    max-width: 900px;
-    padding-block: 1.5rem;
+    max-width: 1080px;
+    padding-block: 2rem 4rem;
   }
   .project-hero img {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: auto;
+    aspect-ratio: 2 / 3;
     object-fit: cover;
   }
   .caption {
@@ -109,17 +123,17 @@ const heading = item?.name ?? "Honouring Heritage";
   .project-text {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-7);
-    padding-block: 2rem;
-    background: var(--color-white);
-    padding-inline: var(--gutter);
-    margin-inline: 0;
-    max-width: none;
+    gap: 3rem;
+    width: 50%;
+    max-width: 760px;
+    padding: 3rem;
+    background: var(--color-cream);
+    margin: 0 auto;
   }
   .text-block .eyebrow { margin-bottom: var(--space-2); }
   .text-block .body {
     font-family: var(--font-serif);
-    font-size: var(--fs-body);
+    font-size: 0.82rem;
     line-height: var(--lh-relaxed);
     max-width: 50ch;
   }
@@ -127,7 +141,7 @@ const heading = item?.name ?? "Honouring Heritage";
   .project-grid {
     display: grid;
     gap: var(--space-5);
-    max-width: 900px;
+    max-width: 1080px;
     padding-block: 1.5rem;
   }
   .project-grid.two-col { grid-template-columns: 1fr 1fr; }
@@ -135,9 +149,9 @@ const heading = item?.name ?? "Honouring Heritage";
 
   .placeholder {
     background: var(--color-rule-soft);
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 4;
   }
-  .placeholder.tall { aspect-ratio: 3 / 4; }
+  .placeholder.tall { aspect-ratio: 2 / 3; }
 
   @media (max-width: 768px) {
     .project-head {
@@ -155,6 +169,8 @@ const heading = item?.name ?? "Honouring Heritage";
       margin-bottom: 0.7rem;
       padding-bottom: 0.65rem;
       border-bottom: 1px solid var(--color-rule);
+      border-right: 0;
+      padding-right: 0;
     }
     .project-title img {
       width: 1.25em;
@@ -186,9 +202,10 @@ const heading = item?.name ?? "Honouring Heritage";
       grid-template-columns: 1fr;
     }
     .project-text {
+      width: 100%;
       gap: 1rem;
       padding: 1.25rem var(--gutter);
-      background: var(--color-white);
+      background: var(--color-cream);
     }
     .text-block .eyebrow { font-size: 0.55rem; }
     .text-block .body { font-size: 0.55rem; }

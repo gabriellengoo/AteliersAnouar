@@ -1,10 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
-import { strings } from "../i18n/strings";
+import { getLang, strings } from "../i18n/strings";
 import handsMark from "../../public/images/hands-mark.png";
 
-const t = strings.en;
+const lang = getLang(Astro.url.pathname);
+const t = strings[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const localePrefix = lang === "fr" ? "/fr" : "";
 
 const craftIcons = import.meta.glob<{ default: ImageMetadata }>("../../public/images/craft-*.png", { eager: true });
 function craft(slug: string) {
@@ -13,7 +15,7 @@ function craft(slug: string) {
 }
 ---
 
-<Base current="collaboration" title="Collaboration — Ateliers Anouar">
+<Base current="collaboration" title={`${t.collaboration.title} — Ateliers Anouar`} lang={lang}>
   <section class="container intro">
     <h1 class="page-title">
       <img src={handsMark.src} alt="" />
@@ -51,51 +53,55 @@ function craft(slug: string) {
   </section>
 
   <section class="container next-section">
-    <a href={`${base}/studio`} class="next-link">{t.collaboration.next}</a>
+    <a href={`${base}${localePrefix}/studio`} class="next-link">{t.collaboration.next}</a>
   </section>
 </Base>
 
 <style>
   .intro {
-    grid-template-columns: minmax(0, 300px) minmax(0, 600px);
-    max-width: 1080px;
-    padding-block: 2.75rem 2rem;
+    grid-template-columns: minmax(0, 520px) minmax(0, 760px);
+    gap: 2.5rem;
+    max-width: 1360px;
+    padding-block: 6rem 5rem;
+    align-items: start;
   }
   .page-title {
-    font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+    font-size: clamp(2.5rem, 3.6vw, 3.5rem);
+    border-right: 1px solid var(--color-ink);
+    padding-right: 2.5rem;
   }
   .intro-body {
-    font-size: 0.9rem;
-    max-width: 64ch;
+    font-size: 1.15rem;
+    max-width: 78ch;
   }
   .services {
-    max-width: 900px;
-    padding-block: 2rem;
+    max-width: 860px;
+    padding-block: 3rem;
   }
   .services ul {
     border-top: 1px solid var(--color-rule);
   }
   .service {
     display: grid;
-    grid-template-columns: minmax(180px, 280px) 1fr;
-    gap: var(--space-5);
-    padding-block: 0.85rem;
+    grid-template-columns: minmax(220px, 320px) minmax(0, 380px);
+    gap: 2.5rem;
+    padding-block: 1.2rem;
     border-bottom: 1px solid var(--color-rule);
     align-items: start;
   }
   .service-title {
     font-weight: 700;
-    font-size: 0.86rem;
+    font-size: 1.05rem;
   }
   .service-body {
     font-family: var(--font-serif);
-    font-size: 0.86rem;
+    font-size: 0.92rem;
     line-height: var(--lh-relaxed);
-    max-width: 60ch;
+    max-width: 42ch;
   }
 
   .crafts {
-    max-width: 900px;
+    max-width: 1080px;
     padding-block: 4.5rem 3rem;
   }
   .crafts-grid {
@@ -110,26 +116,27 @@ function craft(slug: string) {
     flex-direction: column;
     align-items: center;
     gap: var(--space-2);
-    max-width: 145px;
+    max-width: 190px;
     grid-column: span 4;
   }
   .craft:nth-child(n + 4):nth-child(-n + 7) {
     grid-column: span 3;
   }
   .craft img {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     object-fit: contain;
     margin-bottom: var(--space-2);
   }
   .craft-num {
     font-family: var(--font-serif);
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     color: var(--color-coral);
   }
   .craft-name {
     font-family: var(--font-serif);
-    font-size: 0.72rem;
+    font-size: 0.78rem;
+    white-space: nowrap;
   }
 
   .next-section {
@@ -151,6 +158,10 @@ function craft(slug: string) {
       gap: 0.65rem;
     }
     .page-title { font-size: 1.1rem; }
+    .page-title {
+      border-right: 0;
+      padding-right: 0;
+    }
     .intro-body { font-size: 0.6rem; }
     .services { padding-block: 0.5rem 1rem; }
     .service {
