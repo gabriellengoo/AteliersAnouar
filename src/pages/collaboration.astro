@@ -59,9 +59,11 @@ function craft(slug: string) {
 
 <style>
   .intro {
+    width: fit-content;
     grid-template-columns: max-content minmax(0, 760px);
     gap: 1rem;
     max-width: 1360px;
+    padding-inline: 0;
     padding-block: 6rem 5rem;
     align-items: start;
   }
@@ -71,7 +73,7 @@ function craft(slug: string) {
     padding-right: 1rem;
   }
   .intro-body {
-    font-size: 1.15rem;
+    font-size: 1rem;
     max-width: 78ch;
   }
   .services {
@@ -153,7 +155,9 @@ function craft(slug: string) {
 
   @media (max-width: 768px) {
     .intro {
+      width: 100%;
       grid-template-columns: 1fr;
+      padding-inline: var(--gutter);
       padding-block: 1rem;
       gap: 0.65rem;
     }

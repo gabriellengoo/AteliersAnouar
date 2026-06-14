@@ -42,9 +42,11 @@ const t = strings[lang];
 <style>
   :global(main) { background: var(--color-white); }
   .intro {
+    width: fit-content;
     max-width: 1200px;
     grid-template-columns: max-content minmax(0, 720px);
     gap: 1rem;
+    padding-inline: 0;
     padding-block: 5rem;
     background: var(--color-white);
   }
@@ -109,8 +111,10 @@ const t = strings[lang];
 
   @media (max-width: 768px) {
     .intro {
+      width: 100%;
       grid-template-columns: 1fr;
       gap: 0.75rem;
+      padding-inline: var(--gutter);
       padding-block: 1rem 1.35rem;
       background: var(--color-white);
     }
