@@ -175,17 +175,28 @@ function craft(slug: string) {
     }
     .service-title { font-size: 0.58rem; }
     .service-body { font-size: 0.58rem; }
-    .crafts { padding-block: 1.5rem; }
+    .crafts {
+      max-width: none;
+      padding: 1.5rem 0;
+    }
     .crafts-grid {
       grid-template-columns: 1fr;
       gap: 1.25rem;
+      width: 100%;
     }
     .craft,
     .craft:nth-child(n + 4):nth-child(-n + 7) {
       grid-column: auto;
-      max-width: 120px;
+      width: 100%;
+      max-width: none;
     }
-    .craft img { width: 78px; height: 78px; }
+    .craft img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
+      margin-bottom: 0;
+    }
     .craft-num, .craft-name { font-size: 0.55rem; }
     .next-section { padding-block: 0.75rem; }
     .next-link { font-size: 0.8rem; }
