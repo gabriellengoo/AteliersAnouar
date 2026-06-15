@@ -12,9 +12,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const localePrefix = lang === "fr" ? "/fr" : "";
 const link = (path: string) => `${base}${localePrefix}${path}`;
 const relativePath = Astro.url.pathname.slice(base.length) || "/";
-const cleanPath = relativePath.replace(/^\/fr(?=\/|$)/, "") || "/";
+const cleanPath = relativePath
+  .replace(/\.html$/, "")
+  .replace(/^\/fr(?=\/|$)/, "")
+  .replace(/^\/index$/, "/") || "/";
 const enLink = `${base}${cleanPath}`;
-const frLink = `${base}/fr${cleanPath === "/" ? "/" : cleanPath}`;
+const frLink = `${base}/fr${cleanPath === "/" ? "" : cleanPath}`;
 const navItems = [
   { key: "collaboration", label: t.nav.collaboration, href: "/collaboration", mark: colabMark.src },
   { key: "studio", label: t.nav.studio, href: "/studio", mark: colabMark.src },

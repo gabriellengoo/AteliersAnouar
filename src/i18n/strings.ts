@@ -214,5 +214,5 @@ export function t(lang: Lang) {
 }
 
 export function getLang(pathname: string): Lang {
-  return /\/fr(?:\/|$)/.test(pathname) ? "fr" : "en";
+  return /\/fr(?:\/|\.html$|$)/.test(pathname) ? "fr" : "en";
 }

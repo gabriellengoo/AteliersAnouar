@@ -15,5 +15,6 @@ export default defineConfig({
   },
   build: {
     assets: 'assets',
+    format: isVercel ? 'file' : 'directory',
   },
 });
