@@ -7,6 +7,7 @@ import StudioPage from "../studio.astro";
 import ProjectsPage from "../projects/index.astro";
 import ProjectPage from "../projects/[slug].astro";
 import { strings } from "../../i18n/strings";
+import "../../styles/global.css";
 
 export function getStaticPaths() {
   const pages = [
@@ -28,16 +29,12 @@ export function getStaticPaths() {
 }
 
 const { page, item } = Astro.props;
-const pages = {
-  home: HomePage,
-  about: AboutPage,
-  collaboration: CollaborationPage,
-  contact: ContactPage,
-  studio: StudioPage,
-  projects: ProjectsPage,
-  project: ProjectPage,
-};
-const Page = pages[page as keyof typeof pages];
 ---
 
-<Page item={item} />
+{page === "home" && <HomePage />}
+{page === "about" && <AboutPage />}
+{page === "collaboration" && <CollaborationPage />}
+{page === "contact" && <ContactPage />}
+{page === "studio" && <StudioPage />}
+{page === "projects" && <ProjectsPage />}
+{page === "project" && <ProjectPage item={item} />}
